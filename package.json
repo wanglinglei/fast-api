@@ -1,0 +1,31 @@
+{
+  "name": "fast-api",
+  "version": "0.0.1",
+  "description": "通过apifox开放接口快速生成请求文件和typeScript类型文件",
+  "main": "index.js",
+  "bin": {
+    "fast-api": "src/bin/index.ts"
+  },
+  "scripts": {
+    "test": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanglinglei/fast-api.git"
+  },
+  "keywords": [
+    "axios",
+    "request",
+    "JavaScript",
+    "TypeScript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wanglinglei/fast-api/issues"
+  },
+  "homepage": "https://github.com/wanglinglei/fast-api#readme",
+  "dependencies": {
+    "axios": "^1.7.6"
+  }
+}
