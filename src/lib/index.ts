@@ -1,5 +1,6 @@
 import { IConfig, IConfigOptions } from "./types";
 import { groupFileByPath, IGroupPath } from "./process";
+import fs from "fs";
 export class FastApi {
   Authorization: string;
   version: string;
@@ -44,7 +45,15 @@ export class FastApi {
 
     try {
       const response = await axios(config);
+      fs.writeFileSync(
+        "./debug/response.json",
+        JSON.stringify(response.data.paths, null, 2)
+      );
       const groupPath = groupFileByPath(response.data.paths);
+      fs.writeFileSync(
+        "./debug/group.json",
+        JSON.stringify(groupPath, null, 2)
+      );
       this.generate(groupPath);
     } catch (error) {
       console.log(error);
