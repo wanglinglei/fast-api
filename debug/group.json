@@ -1,171 +1,94 @@
-{
-  "user": [
-    {
-      "api": "/user",
-      "method": "get",
-      "params": [
-        {
-          "description": "",
-          "key": "keyword",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "description": "",
-          "key": "size",
-          "required": false,
-          "type": "integer"
-        }
-      ]
-    },
-    {
-      "api": "/user",
-      "method": "post",
-      "params": [
-        {
-          "description": "名称",
-          "key": "name",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "description": "ID 编号",
-          "key": "id",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "description": "状态",
-          "key": "status",
-          "required": true,
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "api": "/user/code",
-      "method": "get"
-    },
-    {
-      "api": "/user/{uid}",
-      "method": "get",
-      "params": []
-    },
-    {
-      "api": "/user/2",
-      "method": "patch",
-      "params": []
-    },
-    {
-      "api": "/user/addGroup",
-      "method": "post",
-      "params": []
-    },
-    {
-      "api": "/user/login",
-      "method": "post",
-      "params": []
-    }
-  ],
-  "group": [
-    {
-      "api": "/group",
-      "method": "post",
-      "params": [
-        {
-          "key": "groupname",
-          "required": true,
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "api": "/group",
-      "method": "get"
-    }
-  ],
-  "upload": [
-    {
-      "api": "/upload/avatar",
-      "method": "post",
-      "params": [
-        {
-          "description": "",
-          "key": "file",
-          "required": false,
-          "type": "string"
-        }
-      ]
-    }
-  ],
-  "gtkjstxfjg": [
-    {
-      "api": "/gtkjstxfjg/quanyu/hcgl/getGnxm",
-      "method": "get",
-      "params": [
-        {
-          "description": "服务id",
-          "key": "fwid",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "description": "图层表名",
-          "key": "rwid",
-          "required": false,
-          "type": "string"
-        },
-        {
-          "description": "枚举值",
-          "key": "enumType",
-          "required": true,
-          "type": "string",
-          "enumKey": [
-            "enumType1",
-            "enumType2"
-          ],
-          "enumDesc": {
-            "enumType1": "枚举值1",
-            "enumType2": "枚举指2"
-          }
-        }
+[
+  {
+    "dependencies": {
+      "UserCreateReqBody": [
+        "userCreateReqBody"
       ],
-      "resData": {
-        "type": "array",
-        "resDataKeys": [
+      "UserDetailInfo": [
+        "userDetailInfo"
+      ]
+    },
+    "apis": [
+      {
+        "api": "/user/create",
+        "method": "post",
+        "params": [
           {
-            "key": "id",
-            "description": "编号",
-            "type": "string",
+            "key": "userCreateReqBody",
+            "modalFileName": "UserCreateReqBody",
+            "description": "",
             "required": true,
-            "enumKey": []
-          },
-          {
-            "key": "xmmc",
-            "description": "项目冲名称",
-            "type": "string",
-            "required": false,
-            "enumKey": []
-          },
-          {
-            "key": "xmlx",
-            "description": "项目类型",
-            "type": "string",
-            "required": true,
-            "enumKey": []
-          },
-          {
-            "key": "type",
-            "description": "枚举标识",
-            "type": "string",
-            "required": true,
-            "enumKey": [
-              "type1",
-              "type2"
-            ]
+            "type": "model"
           }
-        ]
+        ],
+        "responseData": null,
+        "dependencies": {
+          "UserCreateReqBody": [
+            "userCreateReqBody"
+          ]
+        },
+        "apiName": "创建用户"
+      },
+      {
+        "api": "/user/detail",
+        "method": "post",
+        "params": [],
+        "responseData": {
+          "dataKeys": [
+            {
+              "key": "userDetailInfo",
+              "modalFileName": "UserDetailInfo",
+              "description": "",
+              "required": true,
+              "isModal": true
+            }
+          ],
+          "isModal": true
+        },
+        "dependencies": {
+          "UserDetailInfo": [
+            "userDetailInfo"
+          ]
+        },
+        "apiName": "查询用户详情"
+      },
+      {
+        "api": "/user/getUserList",
+        "method": "get",
+        "params": [],
+        "responseData": {
+          "type": "array",
+          "dataKeys": [
+            {
+              "key": "userDetailInfo",
+              "modalFileName": "UserDetailInfo",
+              "description": "",
+              "required": true,
+              "isModal": true
+            }
+          ],
+          "isModal": false
+        },
+        "dependencies": {
+          "UserDetailInfo": [
+            "userDetailInfo"
+          ]
+        },
+        "apiName": "查询用户列表"
       }
-    }
-  ]
-}
+    ]
+  },
+  {
+    "dependencies": {},
+    "apis": [
+      {
+        "api": "/group/Create",
+        "method": "get",
+        "params": [],
+        "responseData": null,
+        "dependencies": {},
+        "apiName": "创建团队"
+      }
+    ]
+  }
+]

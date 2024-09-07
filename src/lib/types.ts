@@ -3,7 +3,7 @@
  * @Description: 配置项类型定义
  * @see: https://apifox-openapi.apifox.cn/api-173411997
  * @Date: 2024-08-31 18:54:51
- * @LastEditTime: 2024-08-31 19:27:44
+ * @LastEditTime: 2024-09-07 08:44:59
  * @FilePath: /fast-api/src/lib/types.ts
  */
 
@@ -53,5 +53,6 @@ export interface IConfigOptions {
 export interface IConfig {
   version?: string; //default 2024-03-28
   Authorization: string;
+  projectId: string;
   configOptions: IConfigOptions;
 }

@@ -1,18 +1,26 @@
 import { IConfig, IConfigOptions } from "./types";
-import { groupFileByPath, IGroupPath } from "./process";
 import fs from "fs";
+
+import { Group } from "./scripts/group";
 export class FastApi {
   Authorization: string;
   version: string;
   configOptions: IConfigOptions;
+  projectId: string;
   constructor(config: IConfig) {
-    const { Authorization, version = "2024-03-28", configOptions } = config;
+    const {
+      Authorization,
+      version = "2024-03-28",
+      configOptions,
+      projectId,
+    } = config;
     if (!Authorization) {
       throw new Error("you must specify authorization");
     }
     this.Authorization = Authorization;
     this.version = version;
     this.configOptions = configOptions;
+    this.projectId = projectId;
   }
 
   async requestApi() {
@@ -24,7 +32,7 @@ export class FastApi {
         excludedByTags: ["pet"],
       },
       options: {
-        includeApifoxExtensionProperties: false,
+        includeApifoxExtensionProperties: true,
         addFoldersToTags: false,
       },
       oasVersion: "3.1",
@@ -33,7 +41,7 @@ export class FastApi {
 
     var config = {
       method: "post",
-      url: "https://api.apifox.com/v1/projects/4510606/export-openapi?locale=zh-CN",
+      url: `https://api.apifox.com/v1/projects/${this.projectId}/export-openapi?locale=zh-CN`,
       headers: {
         "X-Apifox-Api-Version": version,
         Authorization: `Bearer ${Authorization}`,
@@ -47,18 +55,17 @@ export class FastApi {
       const response = await axios(config);
       fs.writeFileSync(
         "./debug/response.json",
-        JSON.stringify(response.data.paths, null, 2)
+        JSON.stringify(response.data, null, 2)
       );
-      const groupPath = groupFileByPath(response.data.paths);
+      const group = new Group(response.data.paths);
+      console.log("Group---groups", group.groups);
       fs.writeFileSync(
         "./debug/group.json",
-        JSON.stringify(groupPath, null, 2)
+        JSON.stringify(group.groupFils, null, 2)
       );
-      this.generate(groupPath);
+      // group.groupByPath();
     } catch (error) {
       console.log(error);
     }
   }
-
-  generate(groupPath: IGroupPath) {}
 }

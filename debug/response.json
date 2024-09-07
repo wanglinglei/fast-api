@@ -1,579 +1,415 @@
 {
-  "/user": {
-    "get": {
-      "summary": "查询用户列表",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [
-        {
-          "name": "keyword",
-          "in": "query",
-          "description": "",
-          "required": false,
-          "example": "test",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "size",
-          "in": "query",
-          "description": "",
-          "required": false,
-          "example": 5,
-          "schema": {
-            "type": "integer"
-          }
-        },
-        {
-          "name": "Authorization",
-          "in": "header",
-          "description": "",
-          "required": false,
-          "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QzIiwidWlkIjoxMCwiaWF0IjoxNzE2ODExODkzLCJleHAiOjE3MTY4NDA2OTN9.Vc-AdYpTcxIuvk1hrHwaHNBP3w10EstS4g1dwpwWwdQ",
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "responses": {
-        "200": {
+  "openapi": "3.1.0",
+  "info": {
+    "title": "fastApi",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/user/create": {
+      "post": {
+        "summary": "创建用户",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {}
-              }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
-    },
-    "post": {
-      "summary": "用户新增",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "名称"
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "title": "用户名"
+                  },
+                  "password": {
+                    "type": "string",
+                    "title": "密码"
+                  },
+                  "gender": {
+                    "type": "string",
+                    "enum": [
+                      "M",
+                      "F"
+                    ],
+                    "x-apifox": {
+                      "enumDescriptions": {
+                        "M": "男",
+                        "F": "女"
+                      }
+                    },
+                    "title": "性别"
+                  }
                 },
-                "id": {
-                  "type": "string",
-                  "description": "ID 编号"
+                "x-apifox-orders": [
+                  "01J7567AZWDS5DJJTWDX4675T6"
+                ],
+                "x-apifox-refs": {
+                  "01J7567AZWDS5DJJTWDX4675T6": {
+                    "$ref": "#/components/schemas/userCreateReqBody"
+                  }
                 },
-                "status": {
-                  "type": "string",
-                  "description": "状态"
-                }
-              },
-              "required": [
-                "name",
-                "id",
-                "status"
-              ]
-            },
-            "example": {
-              "username": "test4",
-              "password": "test7",
-              "code": "test"
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
+                "required": [
+                  "username",
+                  "password",
+                  "gender"
+                ],
+                "x-apifox-ignore-properties": [
+                  "username",
+                  "password",
+                  "gender"
+                ]
               }
             }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
-    }
-  },
-  "/group": {
-    "post": {
-      "summary": "新增团队",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [
-        {
-          "name": "groupname",
-          "in": "query",
-          "description": "",
-          "required": false,
-          "example": "测试1",
-          "schema": {
-            "type": "string"
           }
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "groupname": {
-                  "type": "string",
-                  "title": "常委会"
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
                 }
-              },
-              "required": [
-                "groupname"
-              ]
-            },
-            "example": {
-              "groupname": "test2"
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
               }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "user",
+        "x-apifox-status": "developing",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-210943177-run"
+      }
     },
-    "get": {
-      "summary": "查询团队列表",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [],
-      "responses": {
-        "200": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
-    }
-  },
-  "/upload/avatar": {
-    "post": {
-      "summary": "上传头像",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [
-        {
-          "name": "file",
-          "in": "query",
-          "description": "",
-          "required": false,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "requestBody": {
-        "content": {
-          "multipart/form-data": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "file": {
-                  "format": "binary",
-                  "type": "string",
-                  "example": "file:///Users/wanglinglei/Downloads/icon.jpg"
+    "/user/detail": {
+      "post": {
+        "summary": "查询用户详情",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/userDetailInfo"
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "subCode": {
+                      "type": "string"
+                    },
+                    "subMsg": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "code",
+                    "data",
+                    "msg",
+                    "subCode",
+                    "subMsg",
+                    "success"
+                  ],
+                  "x-apifox-refs": {},
+                  "required": [
+                    "code",
+                    "data",
+                    "msg",
+                    "subCode",
+                    "subMsg",
+                    "success"
+                  ],
+                  "x-apifox-ignore-properties": []
                 }
               }
             },
-            "encoding": {
-              "file": {
-                "contentType": "multipart/form-data"
-              }
-            }
+            "headers": {},
+            "x-apifox-name": "成功"
           }
-        }
-      },
-      "responses": {
-        "200": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
+        },
+        "security": [],
+        "x-apifox-folder": "user",
+        "x-apifox-status": "developing",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-211011247-run"
+      }
+    },
+    "/user/getUserList": {
+      "get": {
+        "summary": "查询用户列表",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/userDetailInfo"
+                      }
+                    },
+                    "msg": {
+                      "type": "string"
+                    },
+                    "subCode": {
+                      "type": "string"
+                    },
+                    "subMsg": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "code",
+                    "data",
+                    "msg",
+                    "subCode",
+                    "subMsg",
+                    "success"
+                  ],
+                  "required": [
+                    "code",
+                    "data",
+                    "msg",
+                    "subCode",
+                    "subMsg",
+                    "success"
+                  ],
+                  "x-apifox-refs": {},
+                  "x-apifox-ignore-properties": []
+                }
               }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "user",
+        "x-apifox-status": "developing",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-211088518-run"
+      }
+    },
+    "/group/Create": {
+      "get": {
+        "summary": "创建团队",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            },
+            "headers": {},
+            "x-apifox-name": "成功"
+          }
+        },
+        "security": [],
+        "x-apifox-folder": "group",
+        "x-apifox-status": "developing",
+        "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-212911030-run"
+      }
     }
   },
-  "/gtkjstxfjg/quanyu/hcgl/getGnxm": {
-    "get": {
-      "summary": "列表接口",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [
-        {
-          "name": "fwid",
-          "in": "query",
-          "description": "服务id",
-          "required": false,
-          "example": "12DE2EFE11CE49DF88BE0294F4E5B711",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "rwid",
-          "in": "query",
-          "description": "图层表名",
-          "required": false,
-          "example": "qygtzhzzxm_ssfasb_xmqyzzhdltb",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "enumType",
-          "in": "query",
-          "description": "枚举值",
-          "required": true,
-          "schema": {
+  "components": {
+    "schemas": {
+      "userCreateReqBody": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "用户名"
+          },
+          "password": {
+            "type": "string",
+            "title": "密码"
+          },
+          "gender": {
             "type": "string",
             "enum": [
-              "enumType1",
-              "enumType2"
+              "M",
+              "F"
             ],
             "x-apifox": {
               "enumDescriptions": {
-                "enumType1": "枚举值1",
-                "enumType2": "枚举指2"
+                "M": "男",
+                "F": "女"
               }
-            }
+            },
+            "title": "性别"
           }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "type": "string",
-                    "title": "请求状态 200 成功，其它失败",
-                    "description": "请求状态 200 成功，其它失败"
-                  },
-                  "message": {
-                    "type": "string",
-                    "title": "请求消息描述",
-                    "description": "请求消息描述"
-                  },
-                  "data": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "title": "编号",
-                          "description": "编号"
-                        },
-                        "xmmc": {
-                          "type": "string",
-                          "title": "项目名称",
-                          "description": "项目冲名称"
-                        },
-                        "xmlx": {
-                          "type": "string",
-                          "title": "项目类型",
-                          "description": "项目类型"
-                        },
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "type1",
-                            "type2"
-                          ],
-                          "title": "子枚举类型",
-                          "description": "枚举标识"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "xmlx",
-                        "type"
-                      ]
-                    }
-                  },
-                  "success": {
-                    "type": "boolean",
-                    "title": "请求成功true,请求失败false",
-                    "description": "请求成功true,请求失败false"
-                  }
-                },
-                "required": [
-                  "status",
-                  "message",
-                  "data",
-                  "01J6NSTEYK85B59K3G5CHA3KC4",
-                  "01J6NSTF3X9C4VAT7B2MX58VC7",
-                  "01J6NSTF8GNZV1BJSGKGKR6WGP",
-                  "success"
-                ]
+        },
+        "x-apifox-orders": [
+          "username",
+          "password",
+          "gender"
+        ],
+        "required": [
+          "username",
+          "password",
+          "gender"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "user"
+      },
+      "userDetailInfo": {
+        "type": "object",
+        "properties": {
+          "avatar": {
+            "type": "string",
+            "title": "用户头像"
+          },
+          "birthday": {
+            "type": "string",
+            "title": "生日"
+          },
+          "email": {
+            "type": "string",
+            "title": "邮箱"
+          },
+          "fullMobile": {
+            "type": "string",
+            "title": "手机号"
+          },
+          "gender": {
+            "type": "string",
+            "title": "性别"
+          },
+          "nickName": {
+            "type": "string",
+            "title": "昵称"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "enable",
+              "disAble"
+            ],
+            "x-apifox": {
+              "enumDescriptions": {
+                "enable": "正常",
+                "disAble": "禁用"
               }
             }
           },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
-    }
-  },
-  "/user/code": {
-    "get": {
-      "summary": "获取验证码",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [],
-      "responses": {
-        "200": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
-    }
-  },
-  "/user/{uid}": {
-    "get": {
-      "summary": "根据uid查询新用户详情",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [
-        {
-          "name": "uid",
-          "in": "path",
-          "description": "",
-          "required": true,
-          "schema": {
+          "userId": {
             "type": "string"
           }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "uid": {
-                    "type": "integer"
-                  },
-                  "username": {
-                    "type": "string"
-                  },
-                  "nickname": {
-                    "type": "string"
-                  },
-                  "avatar": {
-                    "type": "null"
-                  },
-                  "createTime": {
-                    "type": "string"
-                  },
-                  "updateTime": {
-                    "type": "string"
-                  },
-                  "loginTime": {
-                    "type": "null"
-                  }
-                },
-                "required": [
-                  "uid",
-                  "username",
-                  "nickname",
-                  "avatar",
-                  "createTime",
-                  "updateTime",
-                  "loginTime"
-                ]
-              }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
+        },
+        "required": [
+          "avatar",
+          "email",
+          "fullMobile",
+          "gender",
+          "nickName",
+          "status",
+          "userId"
+        ],
+        "x-apifox-orders": [
+          "avatar",
+          "birthday",
+          "email",
+          "fullMobile",
+          "gender",
+          "nickName",
+          "status",
+          "userId"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "user"
       },
-      "security": []
-    }
-  },
-  "/user/2": {
-    "patch": {
-      "summary": "用户编辑",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {}
-            },
-            "example": {
-              "nickname": "wang"
-            }
+      "commonResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "data": {
+            "type": [
+              "string",
+              "integer",
+              "boolean",
+              "array",
+              "object",
+              "number",
+              "null"
+            ]
+          },
+          "msg": {
+            "type": "string"
+          },
+          "subCode": {
+            "type": "string"
+          },
+          "subMsg": {
+            "type": "string"
+          },
+          "success": {
+            "type": "boolean"
           }
-        }
-      },
-      "responses": {
-        "200": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
-    }
+        },
+        "required": [
+          "code",
+          "data",
+          "msg",
+          "subCode",
+          "subMsg",
+          "success"
+        ],
+        "x-apifox-orders": [
+          "code",
+          "data",
+          "msg",
+          "subCode",
+          "subMsg",
+          "success"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "user"
+      }
+    },
+    "securitySchemes": {}
   },
-  "/user/addGroup": {
-    "post": {
-      "summary": "用户关联团队",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {}
-            },
-            "example": {
-              "uid": "4",
-              "groups": [
-                "2",
-                "1"
-              ]
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
-    }
-  },
-  "/user/login": {
-    "post": {
-      "summary": "用户登录",
-      "deprecated": false,
-      "description": "",
-      "tags": [],
-      "parameters": [],
-      "requestBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {}
-            },
-            "example": {
-              "username": "test3",
-              "password": "test3"
-            }
-          }
-        }
-      },
-      "responses": {
-        "200": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          },
-          "headers": {},
-          "x-apifox-name": "成功"
-        }
-      },
-      "security": []
-    }
-  }
+  "servers": []
 }
