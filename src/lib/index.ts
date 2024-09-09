@@ -1,4 +1,5 @@
 import { IConfig, IConfigOptions } from "./types";
+import axios from "axios";
 import fs from "fs";
 
 import { Group } from "./scripts/group";
@@ -9,12 +10,16 @@ export class FastApi {
   version: string;
   configOptions: IConfigOptions;
   projectId: string;
+  input: Record<string, string> = {};
+  output: Record<string, string> = {};
   constructor(config: IConfig) {
     const {
       Authorization,
       version = "2024-03-28",
       configOptions,
       projectId,
+      input = {},
+      output = {},
     } = config;
     if (!Authorization) {
       throw new Error("you must specify authorization");
@@ -23,12 +28,13 @@ export class FastApi {
     this.version = version;
     this.configOptions = configOptions;
     this.projectId = projectId;
+    this.input = input;
+    this.output = output;
   }
 
   async requestApi() {
     const { Authorization, version, configOptions } = this;
-    var axios = require("axios");
-    var data = JSON.stringify({
+    const data = JSON.stringify({
       scope: {
         type: "ALL",
         excludedByTags: ["pet"],
@@ -41,7 +47,7 @@ export class FastApi {
       exportFormat: "JSON",
     });
 
-    var config = {
+    const config = {
       method: "post",
       url: `https://api.apifox.com/v1/projects/${this.projectId}/export-openapi?locale=zh-CN`,
       headers: {
@@ -61,7 +67,10 @@ export class FastApi {
       );
       const group = new Group(response.data.paths);
       if (response.data.components) {
-        new Modal(response.data.components.schemas);
+        new Modal({
+          modals: response.data.components.schemas,
+          modalDir: this.output.modalDir,
+        });
       }
       console.log("Group---groups", group.groups);
       fs.writeFileSync(

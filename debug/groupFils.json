@@ -2,10 +2,10 @@
   {
     "dependencies": {
       "UserCreateReqBody": [
-        "userCreateReqBody"
+        "UserCreateReqBody"
       ],
       "UserDetailInfo": [
-        "userDetailInfo"
+        "UserDetailInfo"
       ]
     },
     "apis": [
@@ -14,7 +14,7 @@
         "method": "post",
         "params": [
           {
-            "key": "userCreateReqBody",
+            "key": "UserCreateReqBody",
             "modalFileName": "UserCreateReqBody",
             "description": "",
             "required": true,
@@ -25,7 +25,7 @@
         "responseData": null,
         "dependencies": {
           "UserCreateReqBody": [
-            "userCreateReqBody"
+            "UserCreateReqBody"
           ]
         },
         "apiName": "创建用户"
@@ -37,7 +37,7 @@
         "responseData": {
           "dataKeys": [
             {
-              "key": "userDetailInfo",
+              "key": "UserDetailInfo",
               "modalFileName": "UserDetailInfo",
               "description": "",
               "required": true,
@@ -48,7 +48,7 @@
         },
         "dependencies": {
           "UserDetailInfo": [
-            "userDetailInfo"
+            "UserDetailInfo"
           ]
         },
         "apiName": "查询用户详情"
@@ -61,7 +61,7 @@
           "type": "array",
           "dataKeys": [
             {
-              "key": "userDetailInfo",
+              "key": "UserDetailInfo",
               "modalFileName": "UserDetailInfo",
               "description": "",
               "required": true,
@@ -72,12 +72,13 @@
         },
         "dependencies": {
           "UserDetailInfo": [
-            "userDetailInfo"
+            "UserDetailInfo"
           ]
         },
         "apiName": "查询用户列表"
       }
-    ]
+    ],
+    "groupName": "user"
   },
   {
     "dependencies": {},
@@ -90,6 +91,7 @@
         "dependencies": {},
         "apiName": "创建团队"
       }
-    ]
+    ],
+    "groupName": "group"
   }
 ]

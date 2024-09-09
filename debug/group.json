@@ -1,44 +1,97 @@
-[
-  {
-    "dependencies": {
-      "UserCreateReqBody": [
-        "UserCreateReqBody"
-      ],
-      "UserDetailInfo": [
-        "UserDetailInfo"
-      ]
-    },
-    "apis": [
+{
+  "user": {
+    "paths": [
       {
-        "api": "/user/create",
-        "method": "post",
-        "params": [
-          {
-            "key": "UserCreateReqBody",
-            "modalFileName": "UserCreateReqBody",
-            "description": "",
-            "required": true,
-            "isModal": true,
-            "type": ""
-          }
-        ],
-        "responseData": null,
-        "dependencies": {
-          "UserCreateReqBody": [
-            "UserCreateReqBody"
-          ]
-        },
-        "apiName": "创建用户"
+        "post": {
+          "summary": "创建用户",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "title": "用户名"
+                    },
+                    "password": {
+                      "type": "string",
+                      "title": "密码"
+                    },
+                    "gender": {
+                      "type": "string",
+                      "enum": [
+                        "M",
+                        "F"
+                      ],
+                      "x-apifox": {
+                        "enumDescriptions": {
+                          "M": "男",
+                          "F": "女"
+                        }
+                      },
+                      "title": "性别"
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01J7567AZWDS5DJJTWDX4675T6"
+                  ],
+                  "x-apifox-refs": {
+                    "01J7567AZWDS5DJJTWDX4675T6": {
+                      "$ref": "#/components/schemas/userCreateReqBody"
+                    }
+                  },
+                  "required": [
+                    "username",
+                    "password",
+                    "gender"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "username",
+                    "password",
+                    "gender"
+                  ]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {},
+                    "x-apifox-ignore-properties": [],
+                    "x-apifox-orders": []
+                  }
+                }
+              },
+              "headers": {},
+              "x-apifox-name": "成功"
+            }
+          },
+          "security": [],
+          "x-apifox-folder": "user",
+          "x-apifox-status": "developing",
+          "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-210943177-run",
+          "api": "/user/create"
+        }
       },
       {
-        "api": "/user/detail",
-        "method": "post",
-        "params": [],
-        "responseData": {
-          "dataKeys": [
-            {
-              "key": "UserDetailInfo",
-              "modalFileName": "UserDetailInfo",
+        "post": {
+          "summary": "查询用户详情",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [],
+          "responses": {
+            "200": {
               "description": "",
               "content": {
                 "application/json": {
@@ -88,28 +141,6 @@
               "headers": {},
               "x-apifox-name": "成功"
             }
-<<<<<<< HEAD
-          ],
-          "isModal": true
-        },
-        "dependencies": {
-          "UserDetailInfo": [
-            "UserDetailInfo"
-          ]
-        },
-        "apiName": "查询用户详情"
-      },
-      {
-        "api": "/user/getUserList",
-        "method": "get",
-        "params": [],
-        "responseData": {
-          "type": "array",
-          "dataKeys": [
-            {
-              "key": "UserDetailInfo",
-              "modalFileName": "UserDetailInfo",
-=======
           },
           "security": [],
           "x-apifox-folder": "user",
@@ -127,7 +158,6 @@
           "parameters": [],
           "responses": {
             "200": {
->>>>>>> 5fb9158a42632bd4be9f4fd8742ba14772c99c52
               "description": "",
               "content": {
                 "application/json": {
@@ -180,17 +210,6 @@
               "headers": {},
               "x-apifox-name": "成功"
             }
-<<<<<<< HEAD
-          ],
-          "isModal": false
-        },
-        "dependencies": {
-          "UserDetailInfo": [
-            "UserDetailInfo"
-          ]
-        },
-        "apiName": "查询用户列表"
-=======
           },
           "security": [],
           "x-apifox-folder": "user",
@@ -198,7 +217,6 @@
           "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-211088518-run",
           "api": "/user/getUserList"
         }
->>>>>>> 5fb9158a42632bd4be9f4fd8742ba14772c99c52
       }
     ]
   },

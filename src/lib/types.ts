@@ -3,8 +3,8 @@
  * @Description: 配置项类型定义
  * @see: https://apifox-openapi.apifox.cn/api-173411997
  * @Date: 2024-08-31 18:54:51
- * @LastEditTime: 2024-09-09 08:47:34
- * @FilePath: /fast-api/src/lib/types.ts
+ * @LastEditTime: 2024-09-09 09:30:56
+ * @FilePath: /personal/fast-api/src/lib/types.ts
  */
 
 // 到处全部接口
@@ -66,4 +66,3 @@ export interface IConfig {
     apiDir?: string;
   };
 }
-import { UserCreateReqBody } from "@/src/services/modal";
