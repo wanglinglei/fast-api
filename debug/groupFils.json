@@ -1,0 +1,95 @@
+[
+  {
+    "dependencies": {
+      "UserCreateReqBody": [
+        "userCreateReqBody"
+      ],
+      "UserDetailInfo": [
+        "userDetailInfo"
+      ]
+    },
+    "apis": [
+      {
+        "api": "/user/create",
+        "method": "post",
+        "params": [
+          {
+            "key": "userCreateReqBody",
+            "modalFileName": "UserCreateReqBody",
+            "description": "",
+            "required": true,
+            "isModal": true,
+            "type": ""
+          }
+        ],
+        "responseData": null,
+        "dependencies": {
+          "UserCreateReqBody": [
+            "userCreateReqBody"
+          ]
+        },
+        "apiName": "创建用户"
+      },
+      {
+        "api": "/user/detail",
+        "method": "post",
+        "params": [],
+        "responseData": {
+          "dataKeys": [
+            {
+              "key": "userDetailInfo",
+              "modalFileName": "UserDetailInfo",
+              "description": "",
+              "required": true,
+              "isModal": true
+            }
+          ],
+          "isModal": true
+        },
+        "dependencies": {
+          "UserDetailInfo": [
+            "userDetailInfo"
+          ]
+        },
+        "apiName": "查询用户详情"
+      },
+      {
+        "api": "/user/getUserList",
+        "method": "get",
+        "params": [],
+        "responseData": {
+          "type": "array",
+          "dataKeys": [
+            {
+              "key": "userDetailInfo",
+              "modalFileName": "UserDetailInfo",
+              "description": "",
+              "required": true,
+              "isModal": true
+            }
+          ],
+          "isModal": false
+        },
+        "dependencies": {
+          "UserDetailInfo": [
+            "userDetailInfo"
+          ]
+        },
+        "apiName": "查询用户列表"
+      }
+    ]
+  },
+  {
+    "dependencies": {},
+    "apis": [
+      {
+        "api": "/group/Create",
+        "method": "get",
+        "params": [],
+        "responseData": null,
+        "dependencies": {},
+        "apiName": "创建团队"
+      }
+    ]
+  }
+]

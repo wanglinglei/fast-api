@@ -65,10 +65,15 @@ export class FastApi {
       }
       console.log("Group---groups", group.groups);
       fs.writeFileSync(
-        "./debug/group.json",
+        "./debug/groupFils.json",
         JSON.stringify(group.groupFils, null, 2)
       );
-      // group.groupByPath();
+
+      fs.writeFileSync(
+        "./debug/group.json",
+        JSON.stringify(group.groups, null, 2)
+      );
+      group.generateApiTemAndDefineTs(group.groupFils);
     } catch (error) {
       console.log(error);
     }
