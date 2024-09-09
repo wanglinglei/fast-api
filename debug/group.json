@@ -1,94 +1,258 @@
-[
-  {
-    "dependencies": {
-      "UserCreateReqBody": [
-        "userCreateReqBody"
-      ],
-      "UserDetailInfo": [
-        "userDetailInfo"
-      ]
-    },
-    "apis": [
+{
+  "user": {
+    "paths": [
       {
-        "api": "/user/create",
-        "method": "post",
-        "params": [
-          {
-            "key": "userCreateReqBody",
-            "modalFileName": "UserCreateReqBody",
-            "description": "",
-            "required": true,
-            "type": "model"
-          }
-        ],
-        "responseData": null,
-        "dependencies": {
-          "UserCreateReqBody": [
-            "userCreateReqBody"
-          ]
-        },
-        "apiName": "创建用户"
+        "post": {
+          "summary": "创建用户",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "title": "用户名"
+                    },
+                    "password": {
+                      "type": "string",
+                      "title": "密码"
+                    },
+                    "gender": {
+                      "type": "string",
+                      "enum": [
+                        "M",
+                        "F"
+                      ],
+                      "x-apifox": {
+                        "enumDescriptions": {
+                          "M": "男",
+                          "F": "女"
+                        }
+                      },
+                      "title": "性别"
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01J7567AZWDS5DJJTWDX4675T6"
+                  ],
+                  "x-apifox-refs": {
+                    "01J7567AZWDS5DJJTWDX4675T6": {
+                      "$ref": "#/components/schemas/userCreateReqBody"
+                    }
+                  },
+                  "required": [
+                    "username",
+                    "password",
+                    "gender"
+                  ],
+                  "x-apifox-ignore-properties": [
+                    "username",
+                    "password",
+                    "gender"
+                  ]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {},
+                    "x-apifox-ignore-properties": [],
+                    "x-apifox-orders": []
+                  }
+                }
+              },
+              "headers": {},
+              "x-apifox-name": "成功"
+            }
+          },
+          "security": [],
+          "x-apifox-folder": "user",
+          "x-apifox-status": "developing",
+          "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-210943177-run",
+          "api": "/user/create"
+        }
       },
       {
-        "api": "/user/detail",
-        "method": "post",
-        "params": [],
-        "responseData": {
-          "dataKeys": [
-            {
-              "key": "userDetailInfo",
-              "modalFileName": "UserDetailInfo",
+        "post": {
+          "summary": "查询用户详情",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [],
+          "responses": {
+            "200": {
               "description": "",
-              "required": true,
-              "isModal": true
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "$ref": "#/components/schemas/userDetailInfo"
+                      },
+                      "msg": {
+                        "type": "string"
+                      },
+                      "subCode": {
+                        "type": "string"
+                      },
+                      "subMsg": {
+                        "type": "string"
+                      },
+                      "success": {
+                        "type": "boolean"
+                      }
+                    },
+                    "x-apifox-orders": [
+                      "code",
+                      "data",
+                      "msg",
+                      "subCode",
+                      "subMsg",
+                      "success"
+                    ],
+                    "x-apifox-refs": {},
+                    "required": [
+                      "code",
+                      "data",
+                      "msg",
+                      "subCode",
+                      "subMsg",
+                      "success"
+                    ],
+                    "x-apifox-ignore-properties": []
+                  }
+                }
+              },
+              "headers": {},
+              "x-apifox-name": "成功"
             }
-          ],
-          "isModal": true
-        },
-        "dependencies": {
-          "UserDetailInfo": [
-            "userDetailInfo"
-          ]
-        },
-        "apiName": "查询用户详情"
+          },
+          "security": [],
+          "x-apifox-folder": "user",
+          "x-apifox-status": "developing",
+          "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-211011247-run",
+          "api": "/user/detail"
+        }
       },
       {
-        "api": "/user/getUserList",
-        "method": "get",
-        "params": [],
-        "responseData": {
-          "type": "array",
-          "dataKeys": [
-            {
-              "key": "userDetailInfo",
-              "modalFileName": "UserDetailInfo",
+        "get": {
+          "summary": "查询用户列表",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [],
+          "responses": {
+            "200": {
               "description": "",
-              "required": true,
-              "isModal": true
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/userDetailInfo"
+                        }
+                      },
+                      "msg": {
+                        "type": "string"
+                      },
+                      "subCode": {
+                        "type": "string"
+                      },
+                      "subMsg": {
+                        "type": "string"
+                      },
+                      "success": {
+                        "type": "boolean"
+                      }
+                    },
+                    "x-apifox-orders": [
+                      "code",
+                      "data",
+                      "msg",
+                      "subCode",
+                      "subMsg",
+                      "success"
+                    ],
+                    "required": [
+                      "code",
+                      "data",
+                      "msg",
+                      "subCode",
+                      "subMsg",
+                      "success"
+                    ],
+                    "x-apifox-refs": {},
+                    "x-apifox-ignore-properties": []
+                  }
+                }
+              },
+              "headers": {},
+              "x-apifox-name": "成功"
             }
-          ],
-          "isModal": false
-        },
-        "dependencies": {
-          "UserDetailInfo": [
-            "userDetailInfo"
-          ]
-        },
-        "apiName": "查询用户列表"
+          },
+          "security": [],
+          "x-apifox-folder": "user",
+          "x-apifox-status": "developing",
+          "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-211088518-run",
+          "api": "/user/getUserList"
+        }
       }
     ]
   },
-  {
-    "dependencies": {},
-    "apis": [
+  "group": {
+    "paths": [
       {
-        "api": "/group/Create",
-        "method": "get",
-        "params": [],
-        "responseData": null,
-        "dependencies": {},
-        "apiName": "创建团队"
+        "get": {
+          "summary": "创建团队",
+          "deprecated": false,
+          "description": "",
+          "tags": [],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {},
+                    "x-apifox-ignore-properties": [],
+                    "x-apifox-orders": []
+                  }
+                }
+              },
+              "headers": {},
+              "x-apifox-name": "成功"
+            }
+          },
+          "security": [],
+          "x-apifox-folder": "group",
+          "x-apifox-status": "developing",
+          "x-run-in-apifox": "https://app.apifox.com/web/project/5090530/apis/api-212911030-run",
+          "api": "/group/Create"
+        }
       }
     ]
   }
-]
+}

@@ -2,8 +2,8 @@
  * @Author: wanglinglei
  * @Description:接口文件配置
  * @Date: 2024-09-07 09:08:13
- * @LastEditTime: 2024-09-07 17:25:15
- * @FilePath: /fast-api/src/lib/scripts/groupFile.ts
+ * @LastEditTime: 2024-09-09 18:47:34
+ * @FilePath: /personal/fast-api/src/lib/scripts/groupFile.ts
  */
 
 import { IGroup } from "./group";
@@ -20,6 +20,8 @@ export class GroupFile {
   dependencies: IDepenDencies;
   // 包含的api
   apis: API[] = [];
+  // 文件名称
+  groupName: string = "";
 
   constructor(group: IGroup) {
     this.group = group;
@@ -30,7 +32,12 @@ export class GroupFile {
     return {
       dependencies: this.dependencies,
       apis: this.apis,
+      groupName: this.groupName,
     };
+  }
+
+  setGroupName(name: string) {
+    this.groupName = name;
   }
 
   getApiConfig() {

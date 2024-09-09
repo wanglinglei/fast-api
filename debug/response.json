@@ -358,55 +358,6 @@
         ],
         "x-apifox-ignore-properties": [],
         "x-apifox-folder": "user"
-      },
-      "commonResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "data": {
-            "type": [
-              "string",
-              "integer",
-              "boolean",
-              "array",
-              "object",
-              "number",
-              "null"
-            ]
-          },
-          "msg": {
-            "type": "string"
-          },
-          "subCode": {
-            "type": "string"
-          },
-          "subMsg": {
-            "type": "string"
-          },
-          "success": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "code",
-          "data",
-          "msg",
-          "subCode",
-          "subMsg",
-          "success"
-        ],
-        "x-apifox-orders": [
-          "code",
-          "data",
-          "msg",
-          "subCode",
-          "subMsg",
-          "success"
-        ],
-        "x-apifox-ignore-properties": [],
-        "x-apifox-folder": "user"
       }
     },
     "securitySchemes": {}

@@ -3,8 +3,8 @@
  * @Description: 配置项类型定义
  * @see: https://apifox-openapi.apifox.cn/api-173411997
  * @Date: 2024-08-31 18:54:51
- * @LastEditTime: 2024-09-07 08:44:59
- * @FilePath: /fast-api/src/lib/types.ts
+ * @LastEditTime: 2024-09-09 09:30:56
+ * @FilePath: /personal/fast-api/src/lib/types.ts
  */
 
 // 到处全部接口
@@ -52,7 +52,17 @@ export interface IConfigOptions {
 
 export interface IConfig {
   version?: string; //default 2024-03-28
-  Authorization: string;
-  projectId: string;
+  Authorization: string; // apifox authorization
+  projectId: string; // 需要生成的项目id
   configOptions: IConfigOptions;
+  input?: {
+    // http 入口文件 需对外暴露get post 不传则去模版生成
+    httpFilePath?: string;
+  };
+  output?: {
+    // 模型文件目录 default  /src/services/modal
+    modalDir?: string;
+    // 接口文件目录 default /src/services/apis
+    apiDir?: string;
+  };
 }

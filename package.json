@@ -26,6 +26,10 @@
   },
   "homepage": "https://github.com/wanglinglei/fast-api#readme",
   "dependencies": {
-    "axios": "^1.7.6"
+    "axios": "^1.7.6",
+    "ts-morph": "^23.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4"
   }
 }

@@ -1,0 +1,97 @@
+[
+  {
+    "dependencies": {
+      "UserCreateReqBody": [
+        "UserCreateReqBody"
+      ],
+      "UserDetailInfo": [
+        "UserDetailInfo"
+      ]
+    },
+    "apis": [
+      {
+        "api": "/user/create",
+        "method": "post",
+        "params": [
+          {
+            "key": "UserCreateReqBody",
+            "modalFileName": "UserCreateReqBody",
+            "description": "",
+            "required": true,
+            "isModal": true,
+            "type": ""
+          }
+        ],
+        "responseData": null,
+        "dependencies": {
+          "UserCreateReqBody": [
+            "UserCreateReqBody"
+          ]
+        },
+        "apiName": "创建用户"
+      },
+      {
+        "api": "/user/detail",
+        "method": "post",
+        "params": [],
+        "responseData": {
+          "dataKeys": [
+            {
+              "key": "UserDetailInfo",
+              "modalFileName": "UserDetailInfo",
+              "description": "",
+              "required": true,
+              "isModal": true
+            }
+          ],
+          "isModal": true
+        },
+        "dependencies": {
+          "UserDetailInfo": [
+            "UserDetailInfo"
+          ]
+        },
+        "apiName": "查询用户详情"
+      },
+      {
+        "api": "/user/getUserList",
+        "method": "get",
+        "params": [],
+        "responseData": {
+          "type": "array",
+          "dataKeys": [
+            {
+              "key": "UserDetailInfo",
+              "modalFileName": "UserDetailInfo",
+              "description": "",
+              "required": true,
+              "isModal": true
+            }
+          ],
+          "isModal": false
+        },
+        "dependencies": {
+          "UserDetailInfo": [
+            "UserDetailInfo"
+          ]
+        },
+        "apiName": "查询用户列表"
+      }
+    ],
+    "groupName": "user"
+  },
+  {
+    "dependencies": {},
+    "apis": [
+      {
+        "api": "/group/Create",
+        "method": "get",
+        "params": [],
+        "responseData": null,
+        "dependencies": {},
+        "apiName": "创建团队"
+      }
+    ],
+    "groupName": "group"
+  }
+]

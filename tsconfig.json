@@ -5,5 +5,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
     "strict": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ],
   }
 }

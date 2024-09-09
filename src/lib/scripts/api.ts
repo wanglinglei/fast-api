@@ -6,7 +6,7 @@
  * @FilePath: /fast-api/src/lib/scripts/api.ts
  */
 
-import { getModalNameAndKey } from "./utils";
+import { getModalNameAndKey } from "../utils/utils";
 import { IDepenDencies } from "./groupFile";
 
 import { IApiOption, IPath, TApifoxDataType } from "./types";
