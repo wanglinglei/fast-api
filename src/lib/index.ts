@@ -2,6 +2,8 @@ import { IConfig, IConfigOptions } from "./types";
 import fs from "fs";
 
 import { Group } from "./scripts/group";
+import { Modal } from "./scripts/modal";
+
 export class FastApi {
   Authorization: string;
   version: string;
@@ -58,6 +60,9 @@ export class FastApi {
         JSON.stringify(response.data, null, 2)
       );
       const group = new Group(response.data.paths);
+      if (response.data.components) {
+        new Modal(response.data.components.schemas);
+      }
       console.log("Group---groups", group.groups);
       fs.writeFileSync(
         "./debug/group.json",
