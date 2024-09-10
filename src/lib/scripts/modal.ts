@@ -1,8 +1,8 @@
 import { TApifoxDataType } from "./types";
-import { Project, SourceFile, StructureKind } from "ts-morph";
+import { Project, SourceFile, StructureKind, IndentationText } from "ts-morph";
 import { getModalNameAndKey } from "../utils/utils";
 import { ensureDir, existsFile } from "../utils/fs";
-
+import { DEFAULT_MODAL_DIR } from "../constants";
 type TProperties = Record<
   string,
   {
@@ -27,15 +27,25 @@ interface IModalOptions {
   modalDir: string;
 }
 
+interface ModalFile {
+  fileName: string;
+}
+
 export class Modal {
   project: Project | null = null;
   modalDir: string = "";
+  modalFiles: ModalFile[] = [];
   constructor(options: IModalOptions) {
     const { modalDir, modals } = options;
-    const project = new Project();
+    const project = new Project({
+      manipulationSettings: {
+        indentationText: IndentationText.TwoSpaces,
+      },
+    });
     this.project = project;
-    this.modalDir = modalDir || process.env.DEFAULT_MODAL_DIR || "";
+    this.modalDir = modalDir || DEFAULT_MODAL_DIR;
     this.generateModalFile(modals);
+    this.generateExportFile();
   }
 
   /**
@@ -52,7 +62,7 @@ export class Modal {
       const fileName = modalFileName + ".ts";
       const modalDir = rootDir + this.modalDir;
       const filePath = rootDir + this.modalDir + "/" + fileName;
-      console.log("filePath", modalDir, filePath);
+      this.modalFiles.push({ fileName });
       ensureDir(modalDir);
       const file = this.project.createSourceFile(filePath, undefined, {
         overwrite: true,
@@ -98,7 +108,6 @@ export class Modal {
       if (enumList && enumList.length) {
         //@ts-ignore
         const { enumDescriptions = {} } = properties[key]["x-apifox"] || {};
-        console.log("enumDescription", properties[key], enumDescriptions);
         const members = enumList.map((member) => {
           return {
             name: member,
@@ -125,8 +134,30 @@ export class Modal {
         docs: title ? [title] : [""],
         enum: enumList,
         description: title,
-        isOptional: false,
+        hasQuestionToken: isOptional,
       };
     });
+  }
+
+  /**
+   * @description: 生成导出文件
+   * @return {*}
+   */
+  generateExportFile() {
+    if (!this.project) return;
+    const rootDir = process.cwd();
+    const exportFilePath = rootDir + this.modalDir + "/index.ts";
+    const file = this.project.createSourceFile(exportFilePath, undefined, {
+      overwrite: true,
+    });
+    this.modalFiles.forEach((modalFile) => {
+      const modalName = modalFile.fileName.replace(".ts", "");
+      file.addExportDeclaration({
+        moduleSpecifier: `./${modalName}`,
+        namedExports: [modalName],
+        isTypeOnly: true,
+      });
+    });
+    file.saveSync();
   }
 }

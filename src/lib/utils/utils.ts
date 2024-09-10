@@ -2,7 +2,7 @@
  * @Author: wanglinglei
  * @Description: 获取模型文件名称
  * @Date: 2024-09-07 11:10:59
- * @LastEditTime: 2024-09-09 09:23:14
+ * @LastEditTime: 2024-09-10 17:49:08
  * @FilePath: /personal/fast-api/src/lib/utils/utils.ts
  */
 
@@ -17,7 +17,6 @@ export function getModalNameAndKey(string: string): {
     // 模型名称
     const typekey = list[list.length - 1];
     const modalKey = typekey.charAt(0).toUpperCase() + typekey.slice(1);
-    console.log("typekey", typekey, modalKey);
 
     // 模型所在文件名称
     const modalName = list
