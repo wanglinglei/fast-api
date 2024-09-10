@@ -79,7 +79,7 @@ export class FastApi {
       console.log("Group---groups", group.groups);
       fs.writeFileSync(
         "./debug/groupFils.json",
-        JSON.stringify(group.groupFils, null, 2)
+        JSON.stringify(group.groupFils[0], null, 2)
       );
 
       fs.writeFileSync(
@@ -106,7 +106,7 @@ export class FastApi {
     const tempDir = path.join(__dirname, "../http");
     const httpDir = output.httpDir || DEFAULT_HTTP_DIR;
     const cwd = process.cwd();
-    const outputHttpDir = cwd + httpDir;
+    const outputHttpDir = cwd + "/" + httpDir;
     if (isExistsDir(outputHttpDir) && !output.coverHttpFile) {
       // 如果产物目录已经存在并且不允许覆写
       return;
