@@ -2,11 +2,20 @@
  * @Author: wanglinglei
  * @Description: 文件相关方法
  * @Date: 2024-09-09 09:23:33
- * @LastEditTime: 2024-09-09 09:29:05
+ * @LastEditTime: 2024-09-10 17:37:18
  * @FilePath: /personal/fast-api/src/lib/utils/fs.ts
  */
 
 import fs from "fs";
+
+/**
+ * @description:  判断文件目录是否存在
+ * @param {string} dir
+ * @return {*}
+ */
+export function isExistsDir(dir: string): boolean {
+  return fs.existsSync(dir);
+}
 
 /**
  * @description: 判断文件目是否存在 不存在就创建目录

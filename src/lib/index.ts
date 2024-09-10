@@ -1,17 +1,20 @@
-import { IConfig, IConfigOptions } from "./types";
+import { IConfig, IConfigOptions, IInputConfig, IOutputConfig } from "./types";
 import axios from "axios";
-import fs from "fs";
+import fs from "fs-extra";
+import path from "path";
 
 import { Group } from "./scripts/group";
 import { Modal } from "./scripts/modal";
+import { ensureDir, isExistsDir } from "./utils/fs";
+import { DEFAULT_HTTP_DIR, DEFAULT_MODAL_DIR } from "./constants";
 
 export class FastApi {
   Authorization: string;
   version: string;
   configOptions: IConfigOptions;
   projectId: string;
-  input: Record<string, string> = {};
-  output: Record<string, string> = {};
+  input: IInputConfig = {};
+  output: IOutputConfig = {};
   constructor(config: IConfig) {
     const {
       Authorization,
@@ -30,6 +33,7 @@ export class FastApi {
     this.projectId = projectId;
     this.input = input;
     this.output = output;
+    this.generateHttpFile();
   }
 
   async requestApi() {
@@ -69,13 +73,13 @@ export class FastApi {
       if (response.data.components) {
         new Modal({
           modals: response.data.components.schemas,
-          modalDir: this.output.modalDir,
+          modalDir: this.output.modalDir || DEFAULT_MODAL_DIR,
         });
       }
       console.log("Group---groups", group.groups);
       fs.writeFileSync(
         "./debug/groupFils.json",
-        JSON.stringify(group.groupFils, null, 2)
+        JSON.stringify(group.groupFils[0], null, 2)
       );
 
       fs.writeFileSync(
@@ -86,5 +90,28 @@ export class FastApi {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  /**
+   * @description: 生成默认请求文件
+   * @return {*}
+   */
+  generateHttpFile() {
+    const { input, output } = this;
+    if (input?.httpFilePath) {
+      // 如果配置了自定义请求文件 不生成
+      return;
+    }
+    console.log("__dirname", __dirname);
+    const tempDir = path.join(__dirname, "../http");
+    const httpDir = output.httpDir || DEFAULT_HTTP_DIR;
+    const cwd = process.cwd();
+    const outputHttpDir = cwd + "/" + httpDir;
+    if (isExistsDir(outputHttpDir) && !output.coverHttpFile) {
+      // 如果产物目录已经存在并且不允许覆写
+      return;
+    }
+    ensureDir(outputHttpDir);
+    fs.copy(tempDir, outputHttpDir);
   }
 }
