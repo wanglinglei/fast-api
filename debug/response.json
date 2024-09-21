@@ -296,10 +296,6 @@
       "userDetailInfo": {
         "type": "object",
         "properties": {
-          "avatar": {
-            "type": "string",
-            "title": "用户头像"
-          },
           "birthday": {
             "type": "string",
             "title": "生日"
@@ -331,32 +327,136 @@
                 "enable": "正常",
                 "disAble": "禁用"
               }
-            }
+            },
+            "title": "用户状态"
           },
           "userId": {
             "type": "string"
+          },
+          "extinfo": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "title": "地址"
+              }
+            },
+            "x-apifox-orders": [
+              "address"
+            ],
+            "required": [
+              "address"
+            ],
+            "x-apifox-ignore-properties": []
+          },
+          "group": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string",
+                  "title": "分组id"
+                },
+                "groupName": {
+                  "type": "string",
+                  "title": "分组名称"
+                }
+              },
+              "x-apifox-orders": [
+                "groupId",
+                "groupName"
+              ],
+              "required": [
+                "groupId",
+                "groupName"
+              ],
+              "x-apifox-ignore-properties": []
+            }
           }
         },
         "required": [
-          "avatar",
           "email",
           "fullMobile",
           "gender",
           "nickName",
           "status",
-          "userId"
+          "userId",
+          "extinfo",
+          "group"
         ],
         "x-apifox-orders": [
-          "avatar",
           "birthday",
           "email",
           "fullMobile",
           "gender",
           "nickName",
           "status",
-          "userId"
+          "userId",
+          "extinfo",
+          "group"
         ],
         "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "user"
+      },
+      "userList": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "ID 编号"
+            },
+            "name": {
+              "type": "string",
+              "description": "名称"
+            },
+            "groups": {
+              "$ref": "#/components/schemas/baseTypeArray",
+              "description": "分组"
+            }
+          },
+          "x-apifox-orders": [
+            "id",
+            "name",
+            "groups"
+          ],
+          "required": [
+            "id",
+            "groups"
+          ],
+          "x-apifox-ignore-properties": []
+        },
+        "x-apifox-folder": "user"
+      },
+      "baseType": {
+        "type": "string",
+        "enum": [
+          "type1",
+          "type2"
+        ],
+        "x-apifox": {
+          "enumDescriptions": {
+            "type1": "类型1",
+            "type2": "类型2"
+          }
+        },
+        "x-apifox-folder": "user"
+      },
+      "baseTypeArray": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "type1"
+          ],
+          "x-apifox": {
+            "enumDescriptions": {
+              "type1": "类型1"
+            }
+          }
+        },
         "x-apifox-folder": "user"
       }
     },

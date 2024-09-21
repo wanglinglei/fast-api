@@ -67,7 +67,11 @@ group 产物生成
       :根据请求方法及出入参类型生成接口方法;
     end group
   end group
-
+  group 生成模型文件
+    :读取接口数据;
+    :读取配置信息,获取产物目录;
+    :生成模型文件;
+  end group
   group 生成http模块
     :读取配置信息;
     if(http模块未配置自定义路径?) then(true)

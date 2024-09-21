@@ -3,11 +3,16 @@ import { Project, SourceFile, StructureKind, IndentationText } from "ts-morph";
 import { getModalNameAndKey } from "../utils/utils";
 import { ensureDir, existsFile } from "../utils/fs";
 import { DEFAULT_MODAL_DIR } from "../constants";
+import { generatePropertyFile } from "../utils/properties";
+
+import { TypeFile } from "../modals/typeFile";
+
 type TProperties = Record<
   string,
   {
     type: TApifoxDataType;
-    title: string;
+    properties?: IComponent;
+    title?: string;
     enum?: string[];
     "x-apifox": {
       enumDescriptions: Record<string, string>;
@@ -15,10 +20,19 @@ type TProperties = Record<
   }
 >;
 
-interface IComponent {
+export interface IComponent {
   type: TApifoxDataType;
-  properties: TProperties;
-  required: string[];
+  properties?: TProperties;
+  required?: string[];
+  items?: IComponent;
+  enum?: string[];
+  "x-apifox": {
+    enumDescriptions: Record<string, string>;
+  };
+  title: string;
+  description?: string;
+  $ref?: string;
+  
 }
 type Modals = Record<string, IComponent>;
 
@@ -64,28 +78,16 @@ export class Modal {
       const filePath = rootDir + this.modalDir + "/" + fileName;
       this.modalFiles.push({ fileName });
       ensureDir(modalDir);
-      const file = this.project.createSourceFile(filePath, undefined, {
-        overwrite: true,
-      });
-
-      // 添加命名空间
-
-      const { type, properties, required } = modals[component];
-
-      const resProperties = this.generateModalProperty({
-        type,
-        properties,
-        required,
+      generatePropertyFile({
+        project: this.project,
+        filePath,
         modalFileName,
-        file,
+        component: modals[component],
       });
-      console.log("resProperties", modalKey, resProperties);
-      file.addInterface({
-        name: modalKey,
-        isExported: true,
-        properties: resProperties,
+      const typeFile = new TypeFile(modals[component], component, {
+        project: this.project,
+        filePath: rootDir + "/debug/propertyModal/" + fileName,
       });
-      file.saveSync();
     }
   }
 
@@ -103,6 +105,10 @@ export class Modal {
     file: SourceFile;
   }) {
     const { type, properties, required, modalFileName, file } = config;
+    if (type === "array") {
+      return {};
+    } else {
+    }
     return Object.keys(properties).map((key) => {
       const { type, title, enum: enumList } = properties[key];
       if (enumList && enumList.length) {

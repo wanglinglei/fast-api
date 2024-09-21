@@ -7,7 +7,7 @@ export type TApifoxDataType =
   | "number"
   | "null"
   | "any";
-
+  
 // 响应key 数据结构
 export interface IApiResponseKey {
   type: TApifoxDataType;
