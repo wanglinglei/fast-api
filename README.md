@@ -67,7 +67,11 @@ group 产物生成
       :根据请求方法及出入参类型生成接口方法;
     end group
   end group
-
+  group 生成模型文件
+    :读取接口数据;
+    :读取配置信息,获取产物目录;
+    :生成模型文件;
+  end group
   group 生成http模块
     :读取配置信息;
     if(http模块未配置自定义路径?) then(true)
@@ -86,4 +90,3 @@ end group
 stop
 @enduml
 ```
-// http://www.plantuml.com/plantuml/png/dLJBRjf05DtxAqRg9f7w1V6YwQPHT_s5g3714W_Bc4Lt90LZGdb81Gfvf8b24vegDb5K0fZGd_4Tst_HCHVPWoLBLNV3lUUSEtFkmRi5RL_LYjcCi3e8EvvbGwldLnhkYqbxLSUUYAmu_knsHh0eqSwIDdz0wuRMQmn6ksFQC4NXKCqN5V8g8n-cjJrLad84Ep0ikssT28JiqAiPAo3PcPuuqpfJ1qDtxRB8-gZWThvJexqNdD_96OcEhk6opheXVmN3QtbtD_IoZO8uBT3PL7hxuJsdmLIG1DKvL1ZlcESH8gUsiEO-sepZJET8VhDDjBIKszBKehIDs43BMLvultkqC_7FT34gusIKsDINCWNfdt2v0pabh4_u7lJ0Fsf0KmyV5NCBxoCAF2qwhNVapE_Ssazancn7A_SL6VsDsOupo86aC4qfzr6M2ciUNYQQZaOQGzfxI6kQ4hGllj6-1UrRPgbNlGVpr9dLugwYftOp1BXd9hnqmLgmNNdMCtqyfhqPVUhYZD1CPFbstpE7oPJGr-30VYKy7U6ip_aTFPu12WbXWIyLQF-Y0zCldM8b8JKuKFkaCF_GwDUW3zXzUIuN9pchv5MDW3M3UGUx9ANcisGb4OyMdvveVRmLq3e9uuzol0MyNNpuedCiDD66CI_yvyFvSqsFh30IN1ZExn4Hxjfxjc1PZbkMaANrbX_wS3wAKqAITwi7lYvAK7d2yD7QL_OpJWYD1kFA7mpZKyGDoB01nYI2W35EnkCU-FNyXqmaWk7bLq48__SkQ7b5s6K5zYt_2m00

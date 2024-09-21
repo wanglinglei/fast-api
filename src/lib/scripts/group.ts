@@ -50,7 +50,6 @@ export class Group {
     for (let group in this.groups) {
       const groupFile = new GroupFile(this.groups[group]);
       groupFile.setGroupName(group);
-      console.log("Generating group file", groupFile.valueOf());
       //@ts-ignore
       this.groupFils.push(groupFile.valueOf());
     }
